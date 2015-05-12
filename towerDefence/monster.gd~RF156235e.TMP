@@ -1,0 +1,31 @@
+
+extends Sprite
+
+# member variables here, example:
+# var a=2
+# var b="textvar"
+var speed = 200
+var direction = Vector2(1,0)
+var position = get_pos();
+var changex = true
+var changey = true
+var size = get_scale()
+
+
+func _ready():
+	# Initialization here
+	print(get_viewport_rect().end.x)
+	print(get_viewport_rect().end.y)
+	set_process(true)
+
+func _process(delta):
+	if(changex && position.x > 403):
+		direction = Vector2(0,1)
+		changex = false
+	if(changey && position.y > 430):
+		direction=Vector2(1,0)
+		changey = false
+	position  +=  direction*delta*speed
+	set_pos(position)
+	if (position.x > get_viewport_rect().end.x + size.x):
+		queue_free()

@@ -1,0 +1,21 @@
+
+extends Sprite
+
+# member variables here, example:
+# var a=2
+# var b="textvar"
+var speed = 100
+var direction = Vector2(1,0)
+var position = get_pos();
+
+func _ready():
+	# Initialization here
+	set_process(true)
+
+func _process(delta):
+	if(get_pos().y > 145):
+		direction=Vector2(0,-1)
+	if(get_pos().x > 401):
+		direction=Vector2(1,0)
+	position  +=  direction*delta*speed
+	set_pos(position)
